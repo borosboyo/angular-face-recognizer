@@ -11,6 +11,15 @@ export class FaceRecognitionService {
     const headers = this.getHeaders(environment.subscriptionKey);
     const params = this.getParameters();
     const body = { url : imageUrl };
+
+    let img = new Image();
+    img.src = imageUrl;
+    img.onload = function (event) {
+      let loadedImage:any = event.currentTarget;
+      let width = loadedImage.width;
+      let height = loadedImage.height;
+    }
+
     return this.httpClient.post<FaceRecognitionResponse>(environment.endpoint, body, { headers, params });
   }
 

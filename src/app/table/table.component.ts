@@ -7,7 +7,7 @@ import { FaceRecognitionResponse } from '../models/face.model';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  @Input() faceApiResponse: FaceRecognitionResponse;
+  @Input() faceApiResponse: FaceRecognitionResponse[];
   constructor() {}
 
   ngOnInit() {}

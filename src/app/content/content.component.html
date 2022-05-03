@@ -2,48 +2,39 @@
   <section class="jumbotron text-center">
     <div class="container">
 
-      <h1 class="jumbotron-heading">Microsoft Azure Cognitive Services</h1>
-      <p class="lead text-muted">This demo application uses Angular to take a picture and read it from the Microsoft Cognitive Services API</p>
+      <h1 class="jumbotron-heading">Arcfelismerés</h1>
+      <p class="lead text-muted">Az alkalmazás a Microsoft Face API-t használja az azonosításhoz. Mind sikeres, mind sikertelen azonosítás után
+        jelöli, hogy hol talált emberi arcokat a képeken, illetve a talált arc fontosabb jellemzőit (pl.
+        férfi/nő).  </p>
+
       <form #f="ngForm">
         <div class="form-group">
           <input type="text" class="form-control" name="imageUrl" id="imageUrl" [(ngModel)]="imageUrl" required
-                 placeholder="Enter your Image URL">
+                 placeholder="A kép URL címe">
         </div>
-        <button (click)="processImage()" [disabled]="!f?.valid" class="btn btn-primary my-2">Process image</button>
+        <button (click)="processImage()" [disabled]="!f?.valid" class="btn btn-primary my-2">Kép feldolgozása</button>
       </form>
-
-      <div class="row">
+      <div [hidden]="startedProcessing == false" class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="container">
+            <img [hidden]="imageUrl == undefined || imageUrl.length == 0" [src]="imageUrl" class="img-fluid"
+                 width="100%" height="100%" id="img">
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
         <div class="col-md-6">
           <div *ngIf="faceApiResponse | json async as response; else waiting">
-
-            <app-table [faceApiResponse]="response"></app-table>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Full reponse from FaceAPI</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body  text-sm-left">
-                    <pre>{{response | json}}</pre>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <app-table [faceApiResponse]="faceApiResponse" ></app-table>
           </div>
-          <!-- End Modal -->
-
-          <ng-template #waiting></ng-template>
         </div>
-        <div class="col-md-6">
-        </div>
+        <ng-template #waiting></ng-template>
       </div>
     </div>
   </section>

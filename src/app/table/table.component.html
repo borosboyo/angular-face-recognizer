@@ -1,8 +1,24 @@
-<table class="table text-sm-left">
-  <thead>
+<div class="container justify-content-center">
+  <p class="lead font-weight-bold">Felismert arcok száma a képen: {{faceApiResponse.length}}</p>
+  <table *ngFor="let face of faceApiResponse; let ii = index" class="table">
+    <thead>
     <tr>
-      <th scope="col">Description</th>
-      <th scope="col">Value</th>
+      <th colspan="2">Arc {{ii + 1}}</th>
     </tr>
-  </thead>
-</table>
+    </thead>
+    <tbody>
+    <tr>
+      <th>Életkor</th>
+      <td>{{face.faceAttributes.age}}</td>
+    </tr>
+    <tr>
+      <th>Nem</th>
+      <td>{{face.faceAttributes.gender}}</td>
+    </tr>
+    <tr>
+      <th>Szemüveg</th>
+      <td>{{face.faceAttributes.glasses}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
