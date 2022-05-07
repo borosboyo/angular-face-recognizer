@@ -1,0 +1,55 @@
+<main role="main">
+  <section class="jumbotron text-center" id="jumbotron">
+    <div class="container">
+
+      <h1 class="jumbotron-heading">Arcfelismerés</h1>
+      <p class="lead text-muted">Az alkalmazás a Microsoft Face API-t használja az azonosításhoz. Mind sikeres, mind
+        sikertelen azonosítás után
+        jelöli, hogy hol talált emberi arcokat a képeken, illetve a talált arc fontosabb jellemzőit (pl.
+        férfi/nő). </p>
+
+      <form #f="ngForm">
+        <div class="form-group">
+          <input type="text" class="form-control" name="imageUrl" id="imageUrl"  required
+                 placeholder="A kép URL címe" [(ngModel)]="imageUrl" (ngModelChange)="this.changeFreshResult()">
+        </div>
+        <button (click)="processImage()" [disabled]="!f?.valid" class="btn btn-primary my-2">Kép feldolgozása</button>
+      </form>
+      <div *ngIf="processingApiRequest == true" class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="container" id="imgContainer">
+            <img *ngIf="imageUrl != undefined" [src]="imageUrl" class="img-fluid" id="img">
+            <div *ngIf="freshResult && processingApiRequest == false">
+              <div
+                *ngFor="let face of faceApiResponse; let ii = index"
+                class="square"
+                style="{{this.calculateRectanglePositions(ii,imageUrl)}}"></div>
+            </div>
+            <div *ngIf="freshResult && processingApiRequest == false">
+              <div
+                *ngFor="let face of faceApiResponse; let ii = index"
+                class="faceText"
+                style="{{this.calculateTextPositions(ii, imageUrl)}}">Arc {{ii + 1}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div *ngIf="faceApiResponse | json async as response; else waiting">
+            <app-table *ngIf="freshResult && processingApiRequest == false"
+                       [faceApiResponse]="faceApiResponse"></app-table>
+          </div>
+        </div>
+        <ng-template #waiting></ng-template>
+      </div>
+    </div>
+  </section>
+</main>

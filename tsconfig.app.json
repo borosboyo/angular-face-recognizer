@@ -6,7 +6,12 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "src/app/model/face.rectangle.ts",
+    "src/app/model/face.attributes.ts",
+    "src/app/model/hair.ts",
+    "src/app/model/makeup.ts",
+    "src/app/model/hair.color.ts"
   ],
   "include": [
     "src/**/*.d.ts"

@@ -1,0 +1,47 @@
+<div class="container justify-content-center">
+  <p class="lead font-weight-bold">Felismert arcok száma a képen: {{faceApiResponse.length}}</p>
+  <table *ngFor="let face of faceApiResponse; let ii = index" class="table">
+    <thead>
+    <tr>
+      <th colspan="2">Arc {{ii + 1}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>Életkor</th>
+      <td>{{face.faceAttributes.age}}</td>
+    </tr>
+    <tr>
+      <th>Nem</th>
+      <td>{{converter.convertGender(face.faceAttributes.gender)}}</td>
+    </tr>
+    <tr>
+      <th>Szemüveg</th>
+      <td>{{converter.convertGlasses(face.faceAttributes.glasses)}}</td>
+    </tr>
+    <tr>
+      <th>Mosoly</th>
+      <td>{{face.faceAttributes.smile}}%</td>
+    </tr>
+    <tr>
+      <th>Haj</th>
+      <td *ngIf="face.faceAttributes.hair.invisible == true">Nem látható</td>
+      <td *ngIf="face.faceAttributes.hair.bald > 0.5">Kopasz</td>
+      <td *ngIf="face.faceAttributes.hair.invisible == false && face.faceAttributes.hair.bald < 0.5">
+        Barna: {{face.faceAttributes.hair.hairColor[0].confidence}}% <br/>
+        Fekete: {{face.faceAttributes.hair.hairColor[1].confidence}}% <br/>
+        Szőke: {{face.faceAttributes.hair.hairColor[2].confidence}}% <br/>
+        Vörös: {{face.faceAttributes.hair.hairColor[3].confidence}}% <br/>
+        Szürke: {{face.faceAttributes.hair.hairColor[4].confidence}}% <br/>
+        Fehér: {{face.faceAttributes.hair.hairColor[6].confidence}}% <br/>
+        Egyéb: {{face.faceAttributes.hair.hairColor[5].confidence}}% <br/>
+    </tr>
+    <tr>
+      <th>Smink</th>
+      <td>Szem: {{converter.convertBoolean(face.faceAttributes.makeup.eyeMakeup)}} <br/>
+        Száj: {{converter.convertBoolean(face.faceAttributes.makeup.lipMakeup)}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

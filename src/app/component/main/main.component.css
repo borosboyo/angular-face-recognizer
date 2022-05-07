@@ -1,3 +1,4 @@
+
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -11,10 +12,10 @@
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid black;
+  border: 8px solid dodgerblue;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: black transparent transparent transparent;
+  border-color: dodgerblue transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -32,4 +33,25 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.jumbotron {
+  background-color: white;
+}
+
+.square {
+  background-color: transparent;
+  border: blue solid 2px;
+  position: absolute;
+}
+
+.imgContainer {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.faceText {
+  position: absolute;
+  color: red;
 }
