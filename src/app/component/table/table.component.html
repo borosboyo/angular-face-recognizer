@@ -28,13 +28,8 @@
       <td *ngIf="face.faceAttributes.hair.invisible == true">Nem látható</td>
       <td *ngIf="face.faceAttributes.hair.bald > 0.5">Kopasz</td>
       <td *ngIf="face.faceAttributes.hair.invisible == false && face.faceAttributes.hair.bald < 0.5">
-        Barna: {{face.faceAttributes.hair.hairColor[0].confidence}}% <br/>
-        Fekete: {{face.faceAttributes.hair.hairColor[1].confidence}}% <br/>
-        Szőke: {{face.faceAttributes.hair.hairColor[2].confidence}}% <br/>
-        Vörös: {{face.faceAttributes.hair.hairColor[3].confidence}}% <br/>
-        Szürke: {{face.faceAttributes.hair.hairColor[4].confidence}}% <br/>
-        Fehér: {{face.faceAttributes.hair.hairColor[6].confidence}}% <br/>
-        Egyéb: {{face.faceAttributes.hair.hairColor[5].confidence}}% <br/>
+        <p *ngFor="let hairType of face.faceAttributes.hair.hairColor; let ii = index">
+          {{converter.convertHairColor(hairType.color) + ': ' + hairType.confidence + '%'}}</p>
     </tr>
     <tr>
       <th>Smink</th>
