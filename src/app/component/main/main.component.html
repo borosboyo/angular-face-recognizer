@@ -6,7 +6,7 @@
       <p class="lead text-muted">Az alkalmazás a Microsoft Face API-t használja az azonosításhoz. Mind sikeres, mind
         sikertelen azonosítás után
         jelöli, hogy hol talált emberi arcokat a képeken, illetve a talált arc fontosabb jellemzőit (pl.
-        férfi/nő). </p>
+        férfi/nő). Az arcok számozása méret szerint történik. </p>
 
       <form #f="ngForm">
         <div class="form-group">
@@ -29,13 +29,13 @@
               <div
                 *ngFor="let face of faceApiResponse; let ii = index"
                 class="square"
-                style="{{this.calculateRectanglePositions(ii,imageUrl)}}"></div>
+                style="{{this.drawFacesSquares(ii,imageUrl)}}"></div>
             </div>
             <div *ngIf="freshResult && processingApiRequest == false">
               <div
                 *ngFor="let face of faceApiResponse; let ii = index"
                 class="faceText"
-                style="{{this.calculateTextPositions(ii, imageUrl)}}">Arc {{ii + 1}}
+                style="{{this.drawFacesText(ii, imageUrl)}}">Arc {{ii + 1}}
               </div>
             </div>
           </div>

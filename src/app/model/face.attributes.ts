@@ -1,4 +1,3 @@
-
 /**
  * The FaceAttributes object contains attributes that describe a face.
  */

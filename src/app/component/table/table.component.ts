@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FaceRecognitionResponse } from '../../model/face.recognition.response';
+import {Component, OnInit, Input} from '@angular/core';
+import {FaceRecognitionResponse} from '../../model/face.recognition.response';
 import {ConverterService} from "../../service/converter.service";
 
 /**
@@ -16,5 +16,6 @@ export class TableComponent implements OnInit {
   constructor(public converter: ConverterService) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

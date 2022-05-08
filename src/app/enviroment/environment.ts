@@ -1,5 +1,6 @@
 /**
  * Enviromental variables for the application.
+ * My Face Api identifiers. You can use them if you want to.
  */
 export const environment = {
   endpoint:

@@ -21,7 +21,7 @@
     </tr>
     <tr>
       <th>Mosoly</th>
-      <td>{{face.faceAttributes.smile}}%</td>
+      <td>{{face.faceAttributes.smile * 100}}%</td>
     </tr>
     <tr>
       <th>Haj</th>
@@ -29,7 +29,7 @@
       <td *ngIf="face.faceAttributes.hair.bald > 0.5">Kopasz</td>
       <td *ngIf="face.faceAttributes.hair.invisible == false && face.faceAttributes.hair.bald < 0.5">
         <p *ngFor="let hairType of face.faceAttributes.hair.hairColor; let ii = index">
-          {{converter.convertHairColor(hairType.color) + ': ' + hairType.confidence + '%'}}</p>
+          {{converter.convertHairColor(hairType.color) + ': ' + hairType.confidence * 100 + '%'}}</p>
     </tr>
     <tr>
       <th>Smink</th>

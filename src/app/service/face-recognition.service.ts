@@ -10,7 +10,8 @@ import {FaceRecognitionResponse} from '../model/face.recognition.response';
   providedIn: 'root'
 })
 export class FaceRecognitionService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   /**
    * @description - This method is used to get the face recognition results.
@@ -19,8 +20,8 @@ export class FaceRecognitionService {
   sendImageToAPI(imageUrl: string) {
     const headers = FaceRecognitionService.getHeaders(environment.subscriptionKey);
     const params = FaceRecognitionService.getParameters();
-    const body = { url : imageUrl };
-    return this.httpClient.post<FaceRecognitionResponse>(environment.endpoint, body, { headers, params });
+    const body = {url: imageUrl};
+    return this.httpClient.post<FaceRecognitionResponse>(environment.endpoint, body, {headers, params});
   }
 
   /**
