@@ -1,5 +1,8 @@
 import {Injectable} from "@angular/core";
 
+/**
+ * Converts English text to Hungarian text.
+ */
 @Injectable({
   providedIn: 'root'
 })
